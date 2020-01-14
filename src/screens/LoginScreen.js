@@ -1,16 +1,176 @@
 import React, {Component} from 'react';
-import {Text, View} from 'react-native';
+import {Text, View, SafeAreaView, Image} from 'react-native';
+import {
+  TextInput,
+  Colors,
+  Button,
+  Caption,
+  Subheading,
+  Title,
+} from 'react-native-paper';
+import Icons from 'react-native-vector-icons/FontAwesome';
+import {
+  GoogleSignin,
+  GoogleSigninButton,
+  statusCodes,
+} from '@react-native-community/google-signin';
+import {TouchableNativeFeedback} from 'react-native-gesture-handler';
 
 export default class LoginScreen extends Component {
   static navigationOptions = {
     headerShown: false,
   };
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      username: '',
+      password: '',
+      userInfo: '',
+      isSigninInProgress: false,
+    };
+  }
+
+  componentDidMount() {
+    GoogleSignin.configure({
+      scopes: [], // what API you want to access on behalf of the user, default is email and profile
+      webClientId:
+        '436028966203-ajks6cd16ogjhvbcrmv992sbh60hdpha.apps.googleusercontent.com', // client ID of type WEB for your server (needed to verify user ID and offline access)
+      offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
+      hostedDomain: '', // specifies a hosted domain restriction
+      loginHint: '', // [iOS] The user's ID, or email address, to be prefilled in the authentication UI if possible. [See docs here](https://developers.google.com/identity/sign-in/ios/api/interface_g_i_d_sign_in.html#a0a68c7504c31ab0b728432565f6e33fd)
+      forceConsentPrompt: true, // [Android] if you want to show the authorization prompt at each login.
+      accountName: '', // [Android] specifies an account name on the device that should be used
+      // iosClientId: '<FROM DEVELOPER CONSOLE>', // [iOS] optional, if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
+    });
+  }
+
+  signIn = async () => {
+    try {
+      this.setState({isSigninInProgress: true});
+      await GoogleSignin.hasPlayServices();
+      const userInfo = await GoogleSignin.signIn();
+      console.log(userInfo);
+
+      this.setState({userInfo});
+    } catch (error) {
+      if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+        // user cancelled the login flow
+      } else if (error.code === statusCodes.IN_PROGRESS) {
+        // operation (e.g. sign in) is in progress already
+      } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+        // play services not available or outdated
+      } else {
+        // some other error happened
+        console.log('aaa');
+      }
+    }
+  };
+
   render() {
     return (
-      <View>
-        <Text> Login </Text>
-      </View>
+      <SafeAreaView
+        style={{
+          flex: 1,
+          backgroundColor: Colors.white,
+        }}>
+        <View
+          style={{
+            marginHorizontal: 30,
+            marginTop: 50,
+            marginBottom: 20,
+            // flex: 1,
+            // justifyContent: 'center',
+            // alignItems: 'center',
+          }}>
+          <Title style={{fontSize: 25}}>Welcome to Membership.</Title>
+          <TextInput
+            style={styles.textInput}
+            label="Username"
+            value={this.state.username}
+            onChangeText={text => this.setState({username: text})}
+          />
+          <TextInput
+            style={styles.textInput}
+            label="Password"
+            value={this.state.password}
+            onChangeText={text => this.setState({password: text})}
+          />
+        </View>
+        <View
+          style={{
+            marginHorizontal: 25,
+          }}>
+          <Button
+            style={styles.button}
+            mode="contained"
+            onPress={() => {
+              this.props.navigation.navigate('App');
+            }}>
+            Sign In
+          </Button>
+          <Button
+            style={styles.button}
+            mode="outlined"
+            onPress={() => this.props.navigation.navigate('Register')}>
+            Sign Up
+          </Button>
+        </View>
+        <View style={{alignItems: 'center', marginBottom: 10}}>
+          <Caption style={{marginVertical: 15}}>OR</Caption>
+          <View
+            style={{
+              backgroundColor: Colors.white,
+              elevation: 2,
+              borderRadius: 7,
+            }}>
+            <TouchableNativeFeedback
+              onPress={this.signIn}
+              style={{
+                borderRadius: 10,
+                padding: 10,
+                paddingHorizontal: 20,
+                flexDirection: 'row',
+                // alignSelf: 'stretch',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+              <Image
+                style={{width: 25, height: 25}}
+                source={require('../assets/google.png')}
+                resizeMode="contain"
+              />
+              <Subheading
+                style={{
+                  marginLeft: 15,
+                  lineHeight: 27,
+                  color: Colors.grey800,
+                }}>
+                Sign in with Google
+              </Subheading>
+              {/* <Icons
+              style={{margin: 10}}
+              name="google"
+              size={40}
+              color={Colors.blue700}
+              onPress={() => this.props.navigation.navigate('App')}
+            /> */}
+            </TouchableNativeFeedback>
+          </View>
+        </View>
+      </SafeAreaView>
     );
   }
 }
+
+const styles = {
+  textInput: {
+    marginBottom: 5,
+    backgroundColor: Colors.white,
+    borderRadius: 3,
+  },
+  button: {
+    margin: 5,
+  },
+};

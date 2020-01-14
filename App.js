@@ -11,6 +11,7 @@ import React from 'react';
 import {Provider as PaperProvider, Button} from 'react-native-paper';
 import {createAppContainer} from 'react-navigation';
 import {AppNavigator} from './src/navigators';
+import {DefaultTheme} from './src/styles';
 
 const AppContainer = createAppContainer(AppNavigator);
 
