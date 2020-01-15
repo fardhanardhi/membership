@@ -1,26 +1,34 @@
 import React, {Component} from 'react';
-import {Text, View} from 'react-native';
+import {Text, View, SafeAreaView} from 'react-native';
+import {GoogleSignin} from '@react-native-community/google-signin';
 
-import {Button, TextInput} from 'react-native-paper';
-
+import {LoadingIndicator} from '../components';
 export default class AuthLoadingScreen extends Component {
   static navigationOptions = {
     headerShown: false,
   };
 
+  componentDidMount() {
+    this.isSignedIn();
+  }
+
+  isSignedIn = async () => {
+    const isSignedIn = await GoogleSignin.isSignedIn();
+    // this.setState({isLoginScreenPresented: !isSignedIn});
+    if (await isSignedIn) {
+      this.props.navigation.navigate('App');
+    } else {
+      this.props.navigation.navigate('Auth');
+    }
+  };
+
   render() {
     return (
-      <View>
-        <Text>Loading</Text>
-        <Button
-          style={{marginHorizontal: 15, marginVertical: 5}}
-          mode="contained"
-          onPress={() => {
-            this.props.navigation.navigate('Auth');
-          }}>
-          Login
-        </Button>
-      </View>
+      <SafeAreaView style={{flex: 1}}>
+        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+          <LoadingIndicator />
+        </View>
+      </SafeAreaView>
     );
   }
 }

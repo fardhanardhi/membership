@@ -55,9 +55,9 @@ export default class RegisterScreen extends Component {
       this.setState({isSigninInProgress: true});
       await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();
-      console.log(userInfo);
-
-      this.setState({userInfo});
+      this.props.navigation.navigate('AuthLoading');
+      // console.log(userInfo);
+      // this.setState({userInfo});
     } catch (error) {
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
         // user cancelled the login flow
@@ -104,7 +104,7 @@ export default class RegisterScreen extends Component {
               // alignItems: 'center',
             }}>
             <Title style={{fontSize: 25, marginBottom: 10}}>
-              Create new account.
+              Create new account
             </Title>
             <TextInput
               style={styles.textInput}
@@ -154,9 +154,7 @@ export default class RegisterScreen extends Component {
             <Button
               style={styles.button}
               mode="contained"
-              onPress={() => {
-                this.props.navigation.navigate('App');
-              }}>
+              onPress={this.signIn}>
               Sign Up
             </Button>
           </View>

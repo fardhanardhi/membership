@@ -8,6 +8,7 @@ import {
   Subheading,
   Title,
 } from 'react-native-paper';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Icons from 'react-native-vector-icons/FontAwesome';
 import {GoogleSignin, statusCodes} from '@react-native-community/google-signin';
 import {
@@ -50,9 +51,9 @@ export default class LoginScreen extends Component {
       this.setState({isSigninInProgress: true});
       await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();
-      console.log(userInfo);
-
-      this.setState({userInfo});
+      this.props.navigation.navigate('AuthLoading');
+      // console.log(userInfo);
+      // this.setState({userInfo});
     } catch (error) {
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
         // user cancelled the login flow
@@ -78,10 +79,19 @@ export default class LoginScreen extends Component {
           <View
             style={{
               flexDirection: 'row',
-              marginBottom: 20,
-              marginTop: 10,
-              marginRight: 10,
+              marginBottom: 15,
+              marginTop: 20,
+              marginLeft: 25,
+              marginRight: 5,
+              // backgroundColor: Colors.yellow500,
+              alignItems: 'center',
             }}>
+            <MaterialIcons
+              onPress={() => this.props.navigation.goBack()}
+              name="arrow-back"
+              size={25}
+              color={Colors.grey800}
+            />
             <View style={{flex: 1}} />
             <Button
               uppercase={false}
@@ -100,7 +110,7 @@ export default class LoginScreen extends Component {
               // alignItems: 'center',
             }}>
             <Title style={{fontSize: 25, marginBottom: 10}}>
-              Welcome to Membership.
+              Member Sign In
             </Title>
             <TextInput
               autoFocus
@@ -124,9 +134,7 @@ export default class LoginScreen extends Component {
             <Button
               style={styles.button}
               mode="contained"
-              onPress={() => {
-                this.props.navigation.navigate('App');
-              }}>
+              onPress={this.signIn}>
               Sign In
             </Button>
           </View>
