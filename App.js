@@ -17,7 +17,7 @@ const AppContainer = createAppContainer(AppNavigator);
 
 const App = () => {
   return (
-    <PaperProvider>
+    <PaperProvider theme={DefaultTheme}>
       <AppContainer />
     </PaperProvider>
   );

@@ -7,6 +7,7 @@ export default {
   dark: false,
   roundness: 4,
   colors: {
+    ...DefaultTheme.colors,
     primary: Colors.blue700,
     accent: Colors.blue700,
     background: Colors.white,
@@ -25,7 +26,7 @@ export default {
     //   .alpha(0.5)
     //   .rgb()
     //   .string(),
-    // notification: Colors.pinkA400
+    // notification: Colors.pinkA400,
   },
   animation: {
     scale: 1.0,

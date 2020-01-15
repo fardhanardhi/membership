@@ -9,12 +9,11 @@ import {
   Title,
 } from 'react-native-paper';
 import Icons from 'react-native-vector-icons/FontAwesome';
+import {GoogleSignin, statusCodes} from '@react-native-community/google-signin';
 import {
-  GoogleSignin,
-  GoogleSigninButton,
-  statusCodes,
-} from '@react-native-community/google-signin';
-import {TouchableNativeFeedback} from 'react-native-gesture-handler';
+  TouchableNativeFeedback,
+  ScrollView,
+} from 'react-native-gesture-handler';
 
 export default class LoginScreen extends Component {
   static navigationOptions = {
@@ -75,90 +74,98 @@ export default class LoginScreen extends Component {
           flex: 1,
           backgroundColor: Colors.white,
         }}>
-        <View
-          style={{
-            marginHorizontal: 30,
-            marginTop: 50,
-            marginBottom: 20,
-            // flex: 1,
-            // justifyContent: 'center',
-            // alignItems: 'center',
-          }}>
-          <Title style={{fontSize: 25}}>Welcome to Membership.</Title>
-          <TextInput
-            style={styles.textInput}
-            label="Username"
-            value={this.state.username}
-            onChangeText={text => this.setState({username: text})}
-          />
-          <TextInput
-            style={styles.textInput}
-            label="Password"
-            value={this.state.password}
-            onChangeText={text => this.setState({password: text})}
-          />
-        </View>
-        <View
-          style={{
-            marginHorizontal: 25,
-          }}>
-          <Button
-            style={styles.button}
-            mode="contained"
-            onPress={() => {
-              this.props.navigation.navigate('App');
-            }}>
-            Sign In
-          </Button>
-          <Button
-            style={styles.button}
-            mode="outlined"
-            onPress={() => this.props.navigation.navigate('Register')}>
-            Sign Up
-          </Button>
-        </View>
-        <View style={{alignItems: 'center', marginBottom: 10}}>
-          <Caption style={{marginVertical: 15}}>OR</Caption>
+        <ScrollView>
           <View
             style={{
-              backgroundColor: Colors.white,
-              elevation: 2,
-              borderRadius: 7,
+              flexDirection: 'row',
+              marginBottom: 20,
+              marginTop: 10,
+              marginRight: 10,
             }}>
-            <TouchableNativeFeedback
-              onPress={this.signIn}
-              style={{
-                borderRadius: 10,
-                padding: 10,
-                paddingHorizontal: 20,
-                flexDirection: 'row',
-                // alignSelf: 'stretch',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}>
-              <Image
-                style={{width: 25, height: 25}}
-                source={require('../assets/google.png')}
-                resizeMode="contain"
-              />
-              <Subheading
-                style={{
-                  marginLeft: 15,
-                  lineHeight: 27,
-                  color: Colors.grey800,
-                }}>
-                Sign in with Google
-              </Subheading>
-              {/* <Icons
-              style={{margin: 10}}
-              name="google"
-              size={40}
-              color={Colors.blue700}
-              onPress={() => this.props.navigation.navigate('App')}
-            /> */}
-            </TouchableNativeFeedback>
+            <View style={{flex: 1}} />
+            <Button
+              uppercase={false}
+              style={styles.button}
+              mode="none"
+              onPress={() => this.props.navigation.navigate('Register')}>
+              Sign Up
+            </Button>
           </View>
-        </View>
+          <View
+            style={{
+              marginHorizontal: 30,
+              marginBottom: 20,
+              // flex: 1,
+              // justifyContent: 'center',
+              // alignItems: 'center',
+            }}>
+            <Title style={{fontSize: 25, marginBottom: 10}}>
+              Welcome to Membership.
+            </Title>
+            <TextInput
+              autoFocus
+              style={styles.textInput}
+              label="Username"
+              value={this.state.username}
+              onChangeText={text => this.setState({username: text})}
+            />
+            <TextInput
+              secureTextEntry
+              style={styles.textInput}
+              label="Password"
+              value={this.state.password}
+              onChangeText={text => this.setState({password: text})}
+            />
+          </View>
+          <View
+            style={{
+              marginHorizontal: 25,
+            }}>
+            <Button
+              style={styles.button}
+              mode="contained"
+              onPress={() => {
+                this.props.navigation.navigate('App');
+              }}>
+              Sign In
+            </Button>
+          </View>
+          <View style={{alignItems: 'center', marginBottom: 40}}>
+            <Caption style={{marginVertical: 15}}>OR</Caption>
+            <View
+              style={{
+                backgroundColor: Colors.white,
+                elevation: 2,
+                borderRadius: 7,
+              }}>
+              <TouchableNativeFeedback
+                onPress={this.signIn}
+                style={{
+                  borderRadius: 10,
+                  padding: 10,
+                  paddingHorizontal: 20,
+                  flexDirection: 'row',
+                  // alignSelf: 'stretch',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}>
+                <Image
+                  style={{width: 25, height: 25}}
+                  source={require('../assets/google.png')}
+                  resizeMode="contain"
+                />
+                <Subheading
+                  style={{
+                    marginLeft: 15,
+                    lineHeight: 27,
+                    color: Colors.grey800,
+                  }}>
+                  Sign in with Google
+                </Subheading>
+              </TouchableNativeFeedback>
+            </View>
+          </View>
+        </ScrollView>
       </SafeAreaView>
     );
   }

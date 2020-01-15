@@ -4,6 +4,7 @@ import {
   LoginScreen,
   DashboardScreen,
   RegisterScreen,
+  WelcomeScreen,
 } from '../screens';
 import {createSwitchNavigator} from 'react-navigation';
 
@@ -11,6 +12,7 @@ const AuthStack = createStackNavigator(
   {
     Login: LoginScreen,
     Register: RegisterScreen,
+    Welcome: WelcomeScreen,
   },
   {
     initialRouteName: 'Login',
