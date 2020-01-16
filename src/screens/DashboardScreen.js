@@ -48,6 +48,10 @@ export default class DashboardScreen extends Component {
     }
   };
 
+  goToHistory = () => {
+    this.props.navigation.navigate('History');
+  };
+
   render() {
     return (
       <SafeAreaView style={{flex: 1}}>
@@ -73,9 +77,8 @@ export default class DashboardScreen extends Component {
               top: 0,
               elevation: 3,
             }}>
-            <View style={{margin: 10, height: 55, justifyContent: 'center'}}>
-              <Button onPress={this.signOut}>Logout</Button>
-            </View>
+            <View
+              style={{margin: 10, height: 55, justifyContent: 'center'}}></View>
           </Card>
           <View
             style={{
@@ -92,6 +95,8 @@ export default class DashboardScreen extends Component {
               {this.state.availableVouchers.map((itenm, index) => {
                 return <Voucher key={index} />;
               })}
+              <Button onPress={this.goToHistory}>History</Button>
+              <Button onPress={this.signOut}>Logout</Button>
             </View>
           </ScrollView>
         </View>
