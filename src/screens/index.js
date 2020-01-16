@@ -3,6 +3,7 @@ import LoginScreen from './LoginScreen';
 import DashboardScreen from './DashboardScreen';
 import RegisterScreen from './RegisterScreen';
 import WelcomeScreen from './WelcomeScreen';
+import HistoryScreen from './HistoryScreen';
 
 export {
   AuthLoadingScreen,
@@ -10,4 +11,5 @@ export {
   DashboardScreen,
   RegisterScreen,
   WelcomeScreen,
+  HistoryScreen,
 };

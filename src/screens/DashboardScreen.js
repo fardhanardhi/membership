@@ -22,10 +22,15 @@ export default class DashboardScreen extends Component {
     }
   };
 
+  goToHistory = () => {
+    this.props.navigation.navigate('History');
+  };
+
   render() {
     return (
       <SafeAreaView>
         <Button onPress={this.signOut}>Logout</Button>
+        <Button onPress={this.goToHistory}>History</Button>
       </SafeAreaView>
     );
   }

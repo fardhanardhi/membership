@@ -1,3 +1,4 @@
 import LoadingIndicator from './LoadingIndicator';
+import HistoryItem from './HistoryItem';
 
-export {LoadingIndicator};
+export {LoadingIndicator, HistoryItem};
