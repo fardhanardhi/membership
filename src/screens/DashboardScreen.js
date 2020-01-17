@@ -7,6 +7,7 @@ import {
   Image,
   StatusBar,
   ImageBackground,
+  TouchableOpacity,
 } from 'react-native';
 import {Button, Colors, Card, Caption, Title} from 'react-native-paper';
 import {DefaultTheme} from '../styles';
@@ -59,6 +60,9 @@ export default class DashboardScreen extends Component {
 
   goToHistory = () => {
     this.props.navigation.navigate('History');
+  };
+  goToProfile = () => {
+    this.props.navigation.navigate('Profile');
   };
 
   render() {
@@ -166,32 +170,40 @@ export default class DashboardScreen extends Component {
                     />
                     <Caption>My Voucher</Caption>
                   </View>
-                  <View
-                    style={{
-                      flex: 1,
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                    }}>
-                    <MaterialCommunityIcons
-                      color="#4D4B47"
-                      size={30}
-                      name="history"
-                    />
-                    <Caption>Histoy</Caption>
-                  </View>
-                  <View
-                    style={{
-                      flex: 1,
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                    }}>
-                    <MaterialCommunityIcons
-                      color="#4D4B47"
-                      size={30}
-                      name="account-outline"
-                    />
-                    <Caption>Profile</Caption>
-                  </View>
+                  <TouchableOpacity
+                    style={{flex: 1}}
+                    onPress={this.goToHistory}>
+                    <View
+                      style={{
+                        flex: 1,
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                      }}>
+                      <MaterialCommunityIcons
+                        color="#4D4B47"
+                        size={30}
+                        name="history"
+                      />
+                      <Caption>Histoy</Caption>
+                    </View>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    style={{flex: 1}}
+                    onPress={this.goToProfile}>
+                    <View
+                      style={{
+                        flex: 1,
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                      }}>
+                      <MaterialCommunityIcons
+                        color="#4D4B47"
+                        size={30}
+                        name="account-outline"
+                      />
+                      <Caption>Profile</Caption>
+                    </View>
+                  </TouchableOpacity>
                 </View>
               </View>
             </Card>
@@ -210,6 +222,7 @@ export default class DashboardScreen extends Component {
                 {this.state.availableVouchers.map((itenm, index) => {
                   return <Voucher key={index} />;
                 })}
+                <Button onPress={this.goToProfile}>Profile</Button>
                 <Button onPress={this.goToHistory}>History</Button>
                 <Button onPress={this.signOut}>Logout</Button>
               </View>

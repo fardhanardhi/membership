@@ -7,6 +7,7 @@ const HistoryItem = props => {
     <>
       <List.Item
         title={props.transactionType}
+        titleStyle={styles.title}
         description={props.dateTime}
         left={props => (
           <List.Icon
@@ -55,6 +56,9 @@ const styles = {
   textPoint: {
     fontWeight: 'bold',
     fontSize: 18,
+  },
+  title: {
+    textTransform: 'capitalize',
   },
 };
 

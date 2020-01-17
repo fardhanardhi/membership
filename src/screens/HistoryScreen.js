@@ -17,15 +17,11 @@ export default class HistoryScreen extends Component {
     ],
   };
 
-  back = () => {
-    this.props.navigation.navigate('Dashboard');
-  };
-
   render() {
     return (
       <SafeAreaView>
         <Appbar.Header>
-          <Appbar.BackAction onPress={this.back} />
+          <Appbar.BackAction onPress={() => this.props.navigation.goBack()} />
           <Appbar.Content title="History" />
         </Appbar.Header>
 

@@ -4,6 +4,7 @@ import DashboardScreen from './DashboardScreen';
 import RegisterScreen from './RegisterScreen';
 import WelcomeScreen from './WelcomeScreen';
 import HistoryScreen from './HistoryScreen';
+import ProfileScreen from './ProfileScreen';
 
 export {
   AuthLoadingScreen,
@@ -12,4 +13,5 @@ export {
   RegisterScreen,
   WelcomeScreen,
   HistoryScreen,
+  ProfileScreen,
 };
