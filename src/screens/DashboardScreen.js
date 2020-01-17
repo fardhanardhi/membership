@@ -51,6 +51,9 @@ export default class DashboardScreen extends Component {
   goToHistory = () => {
     this.props.navigation.navigate('History');
   };
+  goToProfile = () => {
+    this.props.navigation.navigate('Profile');
+  };
 
   render() {
     return (
@@ -96,6 +99,7 @@ export default class DashboardScreen extends Component {
                 return <Voucher key={index} />;
               })}
               <Button onPress={this.goToHistory}>History</Button>
+              <Button onPress={this.goToProfile}>Profile</Button>
               <Button onPress={this.signOut}>Logout</Button>
             </View>
           </ScrollView>

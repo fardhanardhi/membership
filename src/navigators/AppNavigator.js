@@ -6,6 +6,7 @@ import {
   RegisterScreen,
   WelcomeScreen,
   HistoryScreen,
+  ProfileScreen,
 } from '../screens';
 import {createSwitchNavigator} from 'react-navigation';
 
@@ -23,6 +24,7 @@ const AppStack = createStackNavigator(
   {
     Dashboard: DashboardScreen,
     History: HistoryScreen,
+    Profile: ProfileScreen,
   },
   {
     initialRouteName: 'Dashboard',
