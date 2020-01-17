@@ -14,11 +14,12 @@ const Voucher = props => {
           marginHorizontal: 30,
           // padding: 10,
           height: 120,
+          backgroundColor: Colors.grey100,
         }}>
         <View style={{flexDirection: 'row', flex: 1}}>
           <View
             style={{
-              backgroundColor: Colors.green400,
+              backgroundColor: Colors.white,
               width: 90,
               borderBottomLeftRadius: 7,
               borderTopLeftRadius: 7,
@@ -30,14 +31,14 @@ const Voucher = props => {
           style={{position: 'absolute', top: -12, left: 80}}
           name="circle"
           size={24}
-          color={Colors.grey200}
+          color="#F2DDBA"
         />
         {/* <Text>aaaa</Text> */}
         <FontAwesome
           style={{position: 'absolute', bottom: -12, left: 80}}
           name="circle"
           size={24}
-          color={Colors.grey200}
+          color="#F2DDBA"
         />
       </Card>
     </View>

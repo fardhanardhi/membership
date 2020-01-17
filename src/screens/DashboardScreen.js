@@ -1,9 +1,18 @@
 import React, {Component} from 'react';
-import {Text, View, SafeAreaView, ScrollView} from 'react-native';
-import {Button, Colors, Card, Caption} from 'react-native-paper';
+import {
+  Text,
+  View,
+  SafeAreaView,
+  ScrollView,
+  Image,
+  StatusBar,
+  ImageBackground,
+} from 'react-native';
+import {Button, Colors, Card, Caption, Title} from 'react-native-paper';
 import {DefaultTheme} from '../styles';
 import {GoogleSignin} from '@react-native-community/google-signin';
 import {Voucher} from '../components';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export default class DashboardScreen extends Component {
   static navigationOptions = {
@@ -54,53 +63,160 @@ export default class DashboardScreen extends Component {
 
   render() {
     return (
-      <SafeAreaView style={{flex: 1}}>
-        <View
-          style={{
-            flex: 2,
-            height: 120,
-            backgroundColor: DefaultTheme.colors.primary,
-          }}></View>
-        <View
-          style={{
-            flex: 4,
-            height: 120,
-            backgroundColor: Colors.grey200,
-          }}>
-          <Card
-            style={{
-              borderRadius: 10,
-              marginHorizontal: 20,
-              position: 'absolute',
-              left: 0,
-              right: 0,
-              top: 0,
-              elevation: 3,
-            }}>
+      <>
+        <StatusBar
+          barStyle="light-content"
+          hidden={false}
+          backgroundColor={'transparent'}
+          translucent={true}
+        />
+        <SafeAreaView style={{flex: 1}}>
+          <View>
+            <ImageBackground
+              style={{
+                paddingTop: 15,
+              }}
+              source={require('../assets/banner.png')}>
+              <View
+                style={{marginTop: 40, marginBottom: 80, alignItems: 'center'}}>
+                <Text style={{color: '#eee8dd'}}>Your points</Text>
+                <Text
+                  style={{
+                    color: '#e5ddcc',
+                    fontSize: 60,
+                    marginBottom: 20,
+                  }}>
+                  1000
+                </Text>
+                <View style={{flexDirection: 'row', marginBottom: 20}}>
+                  <View style={{flex: 1, alignItems: 'center'}}>
+                    <View>
+                      <Text style={{color: Colors.white}}>Point income</Text>
+                      <Text
+                        style={{
+                          color: '#e5ddcc',
+                          fontSize: 30,
+                          fontWeight: 'bold',
+                        }}>
+                        1020
+                      </Text>
+                    </View>
+                  </View>
+                  <View style={{flex: 1, alignItems: 'center'}}>
+                    <View>
+                      <Text style={{color: Colors.white}}>Point outcome</Text>
+                      <Text
+                        style={{
+                          color: '#e5ddcc',
+                          fontSize: 30,
+                          fontWeight: 'bold',
+                        }}>
+                        105
+                      </Text>
+                    </View>
+                  </View>
+                </View>
+              </View>
+            </ImageBackground>
             <View
-              style={{margin: 10, height: 55, justifyContent: 'center'}}></View>
-          </Card>
+              style={{
+                backgroundColor: '#F2DDBA',
+                height: 30,
+                borderTopLeftRadius: 50,
+                borderTopRightRadius: 50,
+                position: 'absolute',
+                bottom: 0,
+                left: 0,
+                right: 0,
+                zIndex: 2,
+              }}
+            />
+            <Card
+              style={{
+                borderRadius: 10,
+                marginHorizontal: 20,
+                position: 'absolute',
+                left: 0,
+                right: 0,
+                bottom: -10,
+                elevation: 3,
+                flex: 1,
+              }}>
+              <View
+                style={{
+                  margin: 10,
+                  height: 55,
+                  justifyContent: 'center',
+                }}>
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    flex: 1,
+                  }}>
+                  <View
+                    style={{
+                      flex: 1,
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}>
+                    <MaterialCommunityIcons
+                      color="#4D4B47"
+                      size={30}
+                      name="ticket-outline"
+                    />
+                    <Caption>My Voucher</Caption>
+                  </View>
+                  <View
+                    style={{
+                      flex: 1,
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}>
+                    <MaterialCommunityIcons
+                      color="#4D4B47"
+                      size={30}
+                      name="history"
+                    />
+                    <Caption>Histoy</Caption>
+                  </View>
+                  <View
+                    style={{
+                      flex: 1,
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}>
+                    <MaterialCommunityIcons
+                      color="#4D4B47"
+                      size={30}
+                      name="account-outline"
+                    />
+                    <Caption>Profile</Caption>
+                  </View>
+                </View>
+              </View>
+            </Card>
+          </View>
           <View
             style={{
-              // position: 'absolute',
-              backgroundColor: DefaultTheme.colors.primary,
-              height: 40,
-            }}
-          />
-          <ScrollView>
-            <View style={{marginTop: 40}}>
-              <Caption style={{marginVertical: 20, alignSelf: 'center'}}>
-                Available voucher
-              </Caption>
-              {this.state.availableVouchers.map((itenm, index) => {
-                return <Voucher key={index} />;
-              })}
-              <Button onPress={this.goToHistory}>History</Button>
-              <Button onPress={this.signOut}>Logout</Button>
-            </View>
-          </ScrollView>
-        </View>
-      </SafeAreaView>
+              flex: 1,
+              height: 120,
+              backgroundColor: '#F2DDBA',
+            }}>
+            <ScrollView>
+              <View style={{marginTop: 15}}>
+                <Caption style={{marginVertical: 20, alignSelf: 'center'}}>
+                  Available voucher
+                </Caption>
+                {this.state.availableVouchers.map((itenm, index) => {
+                  return <Voucher key={index} />;
+                })}
+                <Button onPress={this.goToHistory}>History</Button>
+                <Button onPress={this.signOut}>Logout</Button>
+              </View>
+            </ScrollView>
+          </View>
+        </SafeAreaView>
+      </>
     );
   }
 }
