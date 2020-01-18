@@ -61,6 +61,9 @@ export default class DashboardScreen extends Component {
   goToHistory = () => {
     this.props.navigation.navigate('History');
   };
+  goToMyVoucher = () => {
+    this.props.navigation.navigate('MyVoucher');
+  };
   goToProfile = () => {
     this.props.navigation.navigate('Profile');
   };
@@ -158,19 +161,23 @@ export default class DashboardScreen extends Component {
                     flexDirection: 'row',
                     flex: 1,
                   }}>
-                  <View
-                    style={{
-                      flex: 1,
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                    }}>
-                    <MaterialCommunityIcons
-                      color="#4D4B47"
-                      size={30}
-                      name="ticket-outline"
-                    />
-                    <Caption>My Voucher</Caption>
-                  </View>
+                  <TouchableOpacity
+                    style={{flex: 1}}
+                    onPress={this.goToMyVoucher}>
+                    <View
+                      style={{
+                        flex: 1,
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                      }}>
+                      <MaterialCommunityIcons
+                        color="#4D4B47"
+                        size={30}
+                        name="ticket-outline"
+                      />
+                      <Caption>My Voucher</Caption>
+                    </View>
+                  </TouchableOpacity>
                   <TouchableOpacity
                     style={{flex: 1}}
                     onPress={this.goToHistory}>
@@ -221,7 +228,14 @@ export default class DashboardScreen extends Component {
                   Available voucher
                 </Caption>
                 {this.state.availableVouchers.map((itenm, index) => {
-                  return <Voucher key={index} />;
+                  return (
+                    <Voucher
+                      key={index}
+                      bodyColor={Colors.grey100}
+                      headColor={Colors.white}
+                      circleColor="#F2DDBA"
+                    />
+                  );
                 })}
                 <Button onPress={this.goToProfile}>Profile</Button>
                 <Button onPress={this.goToHistory}>History</Button>
