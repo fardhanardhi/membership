@@ -62,7 +62,7 @@ export default class DashboardScreen extends Component {
     this.props.navigation.navigate('History');
   };
   goToMyVoucher = () => {
-    this.props.navigation.navigate('MyVoucher');
+    this.props.navigation.navigate('Voucher');
   };
   goToProfile = () => {
     this.props.navigation.navigate('Profile');
@@ -127,7 +127,7 @@ export default class DashboardScreen extends Component {
             </ImageBackground>
             <View
               style={{
-                backgroundColor: '#F2DDBA',
+                backgroundColor: Colors.white,
                 height: 30,
                 borderTopLeftRadius: 50,
                 borderTopRightRadius: 50,
@@ -148,7 +148,7 @@ export default class DashboardScreen extends Component {
                 bottom: -10,
                 elevation: 3,
                 flex: 1,
-                backgroundColor:"#FBF4EA"
+                backgroundColor: '#FBF4EA',
               }}>
               <View
                 style={{
@@ -220,7 +220,7 @@ export default class DashboardScreen extends Component {
             style={{
               flex: 1,
               height: 120,
-              backgroundColor: '#F2DDBA',
+              backgroundColor: Colors.white,
             }}>
             <ScrollView>
               <View style={{marginTop: 15}}>
@@ -232,8 +232,8 @@ export default class DashboardScreen extends Component {
                     <Voucher
                       key={index}
                       bodyColor={Colors.grey100}
-                      headColor={Colors.white}
-                      circleColor="#F2DDBA"
+                      headColor="#AF8F68"
+                      circleColor={Colors.white}
                     />
                   );
                 })}

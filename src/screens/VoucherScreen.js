@@ -10,7 +10,7 @@ export default class MyVoucherScreen extends Component {
 
   render() {
     return (
-      <SafeAreaView style={{flex: 1, backgroundColor: '#F2DDBA'}}>
+      <SafeAreaView style={{flex: 1, backgroundColor: Colors.white}}>
         <Appbar.Header>
           <Appbar.BackAction onPress={() => this.props.navigation.goBack()} />
           <Appbar.Content title="My Voucher" />
@@ -18,9 +18,9 @@ export default class MyVoucherScreen extends Component {
 
         <ScrollView style={{paddingTop: 20}}>
           <Voucher
-            bodyColor={Colors.white}
-            headColor={Colors.grey100}
-            circleColor="#F2DDBA"
+            bodyColor={Colors.grey100}
+            headColor="#D9B69C"
+            circleColor={Colors.white}
           />
         </ScrollView>
       </SafeAreaView>
