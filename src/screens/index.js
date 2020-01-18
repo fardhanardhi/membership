@@ -5,6 +5,7 @@ import RegisterScreen from './RegisterScreen';
 import WelcomeScreen from './WelcomeScreen';
 import HistoryScreen from './HistoryScreen';
 import ProfileScreen from './ProfileScreen';
+import MyVoucherScreen from './MyVoucherScreen';
 
 export {
   AuthLoadingScreen,
@@ -14,4 +15,5 @@ export {
   WelcomeScreen,
   HistoryScreen,
   ProfileScreen,
+  MyVoucherScreen,
 };
