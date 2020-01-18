@@ -145,6 +145,7 @@ export default class DashboardScreen extends Component {
                 bottom: -10,
                 elevation: 3,
                 flex: 1,
+                backgroundColor:"#FBF4EA"
               }}>
               <View
                 style={{

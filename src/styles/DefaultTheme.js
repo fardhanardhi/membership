@@ -8,7 +8,7 @@ export default {
   roundness: 4,
   colors: {
     ...DefaultTheme.colors,
-    primary: Colors.blue700,
+    primary: '#B0714E',
     accent: Colors.blue700,
     background: Colors.white,
     surface: Colors.white,
