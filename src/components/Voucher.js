@@ -61,8 +61,12 @@ const Voucher = props => {
               width: 90,
               borderBottomRightRadius: 7,
               borderTopRightRadius: 7,
+              justifyContent:'center',
+              alignItems:'center'
             }}
-          ></View>
+          >
+            <Text>CLAIM</Text>
+          </View>
         </View>
 
         <FontAwesome
