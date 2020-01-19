@@ -1,9 +1,14 @@
 import React, {Component} from 'react';
-import {Text, View, SafeAreaView} from 'react-native';
+import {View, SafeAreaView} from 'react-native';
 import {GoogleSignin} from '@react-native-community/google-signin';
-
 import {LoadingIndicator} from '../components';
-export default class AuthLoadingScreen extends Component {
+import {NavigationSwitchProp} from 'react-navigation';
+
+interface IProps {
+  navigation: NavigationSwitchProp;
+}
+
+export default class AuthLoadingScreen extends Component<IProps> {
   static navigationOptions = {
     headerShown: false,
   };

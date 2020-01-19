@@ -1,5 +1,12 @@
 import React, {Component} from 'react';
-import {SafeAreaView, View, Text, Image, TouchableOpacity} from 'react-native';
+import {
+  SafeAreaView,
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  StyleSheet,
+} from 'react-native';
 import {
   Appbar,
   Avatar,
@@ -14,8 +21,13 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import {ScrollView} from 'react-native-gesture-handler';
 import {GoogleSignin} from '@react-native-community/google-signin';
+import {NavigationSwitchProp} from 'react-navigation';
 
-export default class ProfileScreen extends Component {
+interface IProps {
+  navigation: NavigationSwitchProp;
+}
+
+export default class ProfileScreen extends Component<IProps> {
   static navigationOptions = {
     headerShown: false,
   };
@@ -38,7 +50,11 @@ export default class ProfileScreen extends Component {
     return (
       <SafeAreaView style={{flex: 1}}>
         <Appbar.Header>
-          <Appbar.BackAction onPress={() => this.props.navigation.goBack()} />
+          <Appbar.BackAction
+            onPress={() => {
+              this.props.navigation.goBack();
+            }}
+          />
           <Appbar.Content title="Profile" />
         </Appbar.Header>
 
@@ -189,7 +205,7 @@ export default class ProfileScreen extends Component {
   }
 }
 
-const styles = {
+const styles = StyleSheet.create({
   profileItem: {
     marginLeft: 22,
     marginBottom: 5,
@@ -202,4 +218,4 @@ const styles = {
     paddingTop: 20,
     paddingBottom: 20,
   },
-};
+});

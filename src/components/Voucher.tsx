@@ -3,9 +3,14 @@ import {View, Text} from 'react-native';
 import {Card, Colors} from 'react-native-paper';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import MaterialIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { TouchableNativeFeedback } from 'react-native-gesture-handler';
 
-const Voucher = props => {
+interface IProps {
+  headColor: string;
+  bodyColor: string;
+  circleColor: string;
+}
+
+const Voucher: React.FC<IProps> = props => {
   return (
     <View>
       <Card
@@ -14,7 +19,6 @@ const Voucher = props => {
           elevation: 0,
           marginBottom: 20,
           marginHorizontal: 30,
-          // padding: 10,
           height: 120,
           backgroundColor: props.bodyColor,
         }}>
@@ -61,10 +65,9 @@ const Voucher = props => {
               width: 90,
               borderBottomRightRadius: 7,
               borderTopRightRadius: 7,
-              justifyContent:'center',
-              alignItems:'center'
-            }}
-          >
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
             <Text>CLAIM</Text>
           </View>
         </View>

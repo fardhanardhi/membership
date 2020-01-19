@@ -4,23 +4,37 @@ import {
   View,
   SafeAreaView,
   ScrollView,
-  Image,
   StatusBar,
   ImageBackground,
   TouchableOpacity,
 } from 'react-native';
-import {Button, Colors, Card, Caption, Title} from 'react-native-paper';
-import {DefaultTheme} from '../styles';
+import {Button, Colors, Card, Caption} from 'react-native-paper';
 import {GoogleSignin} from '@react-native-community/google-signin';
 import {Voucher} from '../components';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {NavigationStackProp} from 'react-navigation-stack';
 
-export default class DashboardScreen extends Component {
+interface IProps {
+  navigation: NavigationStackProp;
+}
+
+interface IState {
+  availableVouchers: IVoucher[];
+}
+
+interface IVoucher {
+  quantity: number;
+  type: number;
+  cost: number;
+  validityPeriod: string;
+}
+
+export default class DashboardScreen extends Component<IProps, IState> {
   static navigationOptions = {
     headerShown: false,
   };
 
-  constructor(props) {
+  constructor(props: IProps) {
     super(props);
 
     this.state = {
@@ -227,7 +241,7 @@ export default class DashboardScreen extends Component {
                 <Caption style={{marginVertical: 20, alignSelf: 'center'}}>
                   Available voucher
                 </Caption>
-                {this.state.availableVouchers.map((itenm, index) => {
+                {this.state.availableVouchers.map((item, index) => {
                   return (
                     <Voucher
                       key={index}

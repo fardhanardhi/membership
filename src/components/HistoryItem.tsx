@@ -1,13 +1,18 @@
 import React from 'react';
-import {Fragment, Text, Image, View} from 'react-native';
+import {Text, Image, View, StyleSheet} from 'react-native';
 import {List, Colors, Divider} from 'react-native-paper';
 
-const HistoryItem = props => {
+interface IProps {
+  dateTime: string;
+  transactionType: 'purchase-product' | 'redeem-point' | 'redeem-voucher';
+  point: number;
+}
+
+const HistoryItem: React.FC<IProps> = props => {
   return (
     <>
       <List.Item
         title={props.transactionType}
-        titleStyle={styles.title}
         description={props.dateTime}
         left={props => (
           <List.Icon
@@ -26,17 +31,19 @@ const HistoryItem = props => {
             }}>
             <Image
               source={
-                props.transactionType == 'purchase'
+                props.transactionType == 'purchase-product'
                   ? require('../assets/point.png')
                   : require('../assets/google.png')
               }
               resizeMode="contain"
               style={{width: 21, height: 21, marginRight: 7}}
             />
-            <Text style={styles.textPoint}>
-              {props.transactionType == 'purchase' ? '+ ' : '- '}
+            <Text style={{fontWeight: 'bold', fontSize: 18}}>
+              {props.transactionType == 'purchase-product' ? '+ ' : '- '}
             </Text>
-            <Text style={styles.textPoint}>{props.point}</Text>
+            <Text style={{fontWeight: 'bold', fontSize: 18}}>
+              {props.point}
+            </Text>
           </View>
         )}
       />
@@ -45,7 +52,7 @@ const HistoryItem = props => {
   );
 };
 
-const styles = {
+const styles = StyleSheet.create({
   icon: {
     backgroundColor: 'black',
     borderRadius: 50,
@@ -53,13 +60,6 @@ const styles = {
   divider: {
     height: 1,
   },
-  textPoint: {
-    fontWeight: 'bold',
-    fontSize: 18,
-  },
-  title: {
-    textTransform: 'capitalize',
-  },
-};
+});
 
 export default HistoryItem;

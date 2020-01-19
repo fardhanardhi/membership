@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Text, View, SafeAreaView, Image} from 'react-native';
+import {View, SafeAreaView, Image} from 'react-native';
 import {
   TextInput,
   Colors,
@@ -8,25 +8,47 @@ import {
   Subheading,
   Title,
 } from 'react-native-paper';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import Icons from 'react-native-vector-icons/FontAwesome';
+import Icons from 'react-native-vector-icons/MaterialIcons';
 import {GoogleSignin, statusCodes} from '@react-native-community/google-signin';
 import {
   TouchableNativeFeedback,
   ScrollView,
 } from 'react-native-gesture-handler';
+import {NavigationStackProp} from 'react-navigation-stack';
+import {NavigationSwitchProp} from 'react-navigation';
 
-export default class LoginScreen extends Component {
+interface IProps {
+  navigation: NavigationStackProp | NavigationSwitchProp;
+}
+
+interface IState {
+  fullName: string;
+  email: string;
+  phoneNumber: string;
+  username: string;
+  password: string;
+  confirmPassword: string;
+
+  userInfo: string;
+  isSigninInProgress: boolean;
+}
+
+export default class RegisterScreen extends Component<IProps, IState> {
   static navigationOptions = {
     headerShown: false,
   };
 
-  constructor(props) {
+  constructor(props: IProps) {
     super(props);
 
     this.state = {
+      fullName: '',
+      email: '',
+      phoneNumber: '',
       username: '',
       password: '',
+      confirmPassword: '',
+
       userInfo: '',
       isSigninInProgress: false,
     };
@@ -50,7 +72,7 @@ export default class LoginScreen extends Component {
     try {
       this.setState({isSigninInProgress: true});
       await GoogleSignin.hasPlayServices();
-      const userInfo = await GoogleSignin.signIn();
+      // const userInfo = await GoogleSignin.signIn();
       this.props.navigation.navigate('AuthLoading');
       // console.log(userInfo);
       // this.setState({userInfo});
@@ -82,24 +104,14 @@ export default class LoginScreen extends Component {
               marginBottom: 15,
               marginTop: 20,
               marginLeft: 25,
-              marginRight: 5,
-              // backgroundColor: Colors.yellow500,
-              alignItems: 'center',
             }}>
-            <MaterialIcons
+            <Icons
               onPress={() => this.props.navigation.goBack()}
               name="arrow-back"
               size={25}
               color={Colors.grey800}
             />
             <View style={{flex: 1}} />
-            <Button
-              uppercase={false}
-              style={styles.button}
-              mode="none"
-              onPress={() => this.props.navigation.navigate('Register')}>
-              Sign Up
-            </Button>
           </View>
           <View
             style={{
@@ -110,10 +122,29 @@ export default class LoginScreen extends Component {
               // alignItems: 'center',
             }}>
             <Title style={{fontSize: 25, marginBottom: 10}}>
-              Member Sign In
+              Create new account
             </Title>
             <TextInput
-              autoFocus
+              style={styles.textInput}
+              label="Full Name"
+              value={this.state.fullName}
+              onChangeText={text => this.setState({fullName: text})}
+            />
+            <TextInput
+              keyboardType="email-address"
+              style={styles.textInput}
+              label="Email"
+              value={this.state.email}
+              onChangeText={text => this.setState({email: text})}
+            />
+            <TextInput
+              keyboardType="phone-pad"
+              style={styles.textInput}
+              label="Phone Number"
+              value={this.state.phoneNumber}
+              onChangeText={text => this.setState({phoneNumber: text})}
+            />
+            <TextInput
               style={styles.textInput}
               label="Username"
               value={this.state.username}
@@ -126,6 +157,13 @@ export default class LoginScreen extends Component {
               value={this.state.password}
               onChangeText={text => this.setState({password: text})}
             />
+            <TextInput
+              secureTextEntry
+              style={styles.textInput}
+              label="Confirm Password"
+              value={this.state.confirmPassword}
+              onChangeText={text => this.setState({confirmPassword: text})}
+            />
           </View>
           <View
             style={{
@@ -135,7 +173,7 @@ export default class LoginScreen extends Component {
               style={styles.button}
               mode="contained"
               onPress={this.signIn}>
-              Sign In
+              Sign Up
             </Button>
           </View>
           <View style={{alignItems: 'center', marginBottom: 40}}>
@@ -168,7 +206,7 @@ export default class LoginScreen extends Component {
                     lineHeight: 27,
                     color: Colors.grey800,
                   }}>
-                  Sign in with Google
+                  Sign up with Google
                 </Subheading>
               </TouchableNativeFeedback>
             </View>
