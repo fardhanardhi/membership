@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {SafeAreaView, ScrollView} from 'react-native';
+import {SafeAreaView, ScrollView, StatusBar} from 'react-native';
 import Voucher from '../components/Voucher';
 import {Appbar, Colors} from 'react-native-paper';
 import {NavigationStackProp} from 'react-navigation-stack';
@@ -15,24 +15,33 @@ export default class MyVoucherScreen extends Component<IProps> {
 
   render() {
     return (
-      <SafeAreaView style={{flex: 1, backgroundColor: Colors.white}}>
-        <Appbar.Header>
-          <Appbar.BackAction
-            onPress={() => {
-              this.props.navigation.goBack();
-            }}
-          />
-          <Appbar.Content title="My Voucher" />
-        </Appbar.Header>
+      <>
+        <StatusBar
+          barStyle="light-content"
+          hidden={false}
+          backgroundColor={'#996244'}
+          translucent={false}
+        />
+        <SafeAreaView style={{flex: 1, backgroundColor: Colors.white}}>
+          <Appbar.Header>
+            <Appbar.BackAction
+              onPress={() => {
+                this.props.navigation.goBack();
+              }}
+            />
+            <Appbar.Content title="My Voucher" />
+          </Appbar.Header>
 
-        <ScrollView style={{paddingTop: 20}}>
-          <Voucher
-            bodyColor={Colors.grey100}
-            headColor="#D9B69C"
-            circleColor={Colors.white}
-          />
-        </ScrollView>
-      </SafeAreaView>
+          <ScrollView style={{paddingTop: 20}}>
+            <Voucher
+              bodyColor="#EDE7DD"
+              headColor="#D9B69C"
+              headTextColor="#4D4B47"
+              circleColor={Colors.white}
+            />
+          </ScrollView>
+        </SafeAreaView>
+      </>
     );
   }
 }

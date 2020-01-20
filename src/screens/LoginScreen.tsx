@@ -61,9 +61,9 @@ export default class LoginScreen extends Component<IProps, IState> {
     try {
       this.setState({isSigninInProgress: true});
       await GoogleSignin.hasPlayServices();
-      // const userInfo = await GoogleSignin.signIn();
+      const userInfo = await GoogleSignin.signIn();
       this.props.navigation.navigate('AuthLoading');
-      // console.log(userInfo);
+      console.log(userInfo);
       // this.setState({userInfo});
     } catch (error) {
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
@@ -74,8 +74,8 @@ export default class LoginScreen extends Component<IProps, IState> {
         // play services not available or outdated
       } else {
         // some other error happened
-        console.log('aaa');
       }
+      console.log('aaa`');
     }
   };
 

@@ -6,6 +6,7 @@ import {
   Image,
   TouchableOpacity,
   StyleSheet,
+  StatusBar,
 } from 'react-native';
 import {
   Appbar,
@@ -48,159 +49,169 @@ export default class ProfileScreen extends Component<IProps> {
 
   render() {
     return (
-      <SafeAreaView style={{flex: 1}}>
-        <Appbar.Header>
-          <Appbar.BackAction
-            onPress={() => {
-              this.props.navigation.goBack();
-            }}
-          />
-          <Appbar.Content title="Profile" />
-        </Appbar.Header>
-
-        <ScrollView style={{backgroundColor: Colors.grey200}}>
-          <View
-            style={{
-              backgroundColor: Colors.white,
-              justifyContent: 'center',
-              alignItems: 'center',
-              padding: 30,
-              marginBottom: 2,
-            }}>
-            <Avatar.Icon
-              style={{backgroundColor: 'transparent', marginBottom: 5}}
-              icon={() => <Feather name="user" size={64} />}
+      <>
+        <StatusBar
+          barStyle="light-content"
+          hidden={false}
+          backgroundColor={'#996244'}
+          translucent={false}
+        />
+        <SafeAreaView style={{flex: 1}}>
+          <Appbar.Header>
+            <Appbar.BackAction
+              onPress={() => {
+                this.props.navigation.goBack();
+              }}
             />
-            <Title style={{textTransform: 'capitalize', fontWeight: 'bold'}}>
-              full name
-            </Title>
-            <Text style={{fontSize: 17}}>username</Text>
-          </View>
+            <Appbar.Content title="Profile" />
+          </Appbar.Header>
 
-          <View style={{flexDirection: 'row', marginBottom: 10}}>
+          <ScrollView style={{backgroundColor: Colors.grey200}}>
             <View
               style={{
-                flex: 0.5,
                 backgroundColor: Colors.white,
                 justifyContent: 'center',
                 alignItems: 'center',
                 padding: 30,
-                marginRight: 1,
+                marginBottom: 2,
               }}>
-              <Image
-                source={require('../assets/point.png')}
-                resizeMode="contain"
-                style={{width: 25, height: 25, marginRight: 7}}
+              <Avatar.Icon
+                style={{backgroundColor: 'transparent', marginBottom: 5}}
+                icon={() => <Feather name="user" size={64} />}
               />
-              <Text>My Points</Text>
-              <Subheading
-                style={{textTransform: 'capitalize', fontWeight: 'bold'}}>
-                5000 Points
-              </Subheading>
+              <Title style={{textTransform: 'capitalize', fontWeight: 'bold'}}>
+                full name
+              </Title>
+              <Text style={{fontSize: 17}}>username</Text>
             </View>
 
-            <View
-              style={{
-                flex: 0.5,
-                backgroundColor: Colors.white,
-                justifyContent: 'center',
-                alignItems: 'center',
-                padding: 30,
-                marginLeft: 1,
-              }}>
-              <Image
-                source={require('../assets/voucher.png')}
-                resizeMode="contain"
-                style={{width: 25, height: 25, marginRight: 7}}
-              />
-              <Text>My Vouchers</Text>
-              <Subheading
-                style={{textTransform: 'capitalize', fontWeight: 'bold'}}>
-                5 Vouchers
-              </Subheading>
+            <View style={{flexDirection: 'row', marginBottom: 10}}>
+              <View
+                style={{
+                  flex: 0.5,
+                  backgroundColor: Colors.white,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  padding: 30,
+                  marginRight: 1,
+                }}>
+                <Image
+                  source={require('../assets/point.png')}
+                  resizeMode="contain"
+                  style={{width: 25, height: 25, marginRight: 7}}
+                />
+                <Text>My Points</Text>
+                <Subheading
+                  style={{textTransform: 'capitalize', fontWeight: 'bold'}}>
+                  5000 Points
+                </Subheading>
+              </View>
+
+              <View
+                style={{
+                  flex: 0.5,
+                  backgroundColor: Colors.white,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  padding: 30,
+                  marginLeft: 1,
+                }}>
+                <Image
+                  source={require('../assets/voucher.png')}
+                  resizeMode="contain"
+                  style={{width: 25, height: 25, marginRight: 7}}
+                />
+                <Text>My Vouchers</Text>
+                <Subheading
+                  style={{textTransform: 'capitalize', fontWeight: 'bold'}}>
+                  5 Vouchers
+                </Subheading>
+              </View>
             </View>
-          </View>
 
-          <View style={styles.viewSubContent}>
-            <Subheading style={styles.profileItem}>Profile</Subheading>
-            <List.Item
-              title="Edit Profile"
-              left={props => (
-                <List.Icon
-                  {...props}
-                  icon={() => <FontAwesome name="user" size={20} />}
-                />
-              )}
-              right={props => <List.Icon {...props} icon="chevron-right" />}
-            />
-          </View>
-
-          <View style={styles.viewSubContent}>
-            <Subheading style={styles.profileItem}>Account</Subheading>
-            <List.Item
-              title="Change Username"
-              left={props => (
-                <List.Icon
-                  {...props}
-                  icon={() => <Fontisto name="at" size={18} />}
-                />
-              )}
-              right={props => <List.Icon {...props} icon="chevron-right" />}
-            />
-            <Divider style={{marginHorizontal: 20}} />
-            <List.Item
-              title="Change Password"
-              left={props => (
-                <List.Icon
-                  {...props}
-                  icon={() => <Fontisto name="locked" size={18} />}
-                />
-              )}
-              right={props => <List.Icon {...props} icon="chevron-right" />}
-            />
-          </View>
-
-          <View style={styles.viewSubContent}>
-            <Subheading style={styles.profileItem}>About</Subheading>
-            <List.Item
-              title="Version: 1.0"
-              left={props => (
-                <List.Icon
-                  {...props}
-                  icon={() => <FontAwesome name="info-circle" size={20} />}
-                />
-              )}
-            />
-            <Divider style={{marginHorizontal: 20}} />
-            <List.Item
-              title="Help"
-              left={props => (
-                <List.Icon
-                  {...props}
-                  icon={() => <FontAwesome name="question-circle" size={20} />}
-                />
-              )}
-              right={props => <List.Icon {...props} icon="chevron-right" />}
-            />
-          </View>
-
-          <TouchableOpacity onPress={this.signOut}>
-            <View
-              style={{
-                flex: 1,
-                backgroundColor: Colors.white,
-                marginBottom: 10,
-                paddingTop: 10,
-                paddingBottom: 10,
-              }}>
+            <View style={styles.viewSubContent}>
+              <Subheading style={styles.profileItem}>Profile</Subheading>
               <List.Item
-                title="Logout"
-                left={props => <List.Icon {...props} icon="logout" />}
+                title="Edit Profile"
+                left={props => (
+                  <List.Icon
+                    {...props}
+                    icon={() => <FontAwesome name="user" size={20} />}
+                  />
+                )}
+                right={props => <List.Icon {...props} icon="chevron-right" />}
               />
             </View>
-          </TouchableOpacity>
-        </ScrollView>
-      </SafeAreaView>
+
+            <View style={styles.viewSubContent}>
+              <Subheading style={styles.profileItem}>Account</Subheading>
+              <List.Item
+                title="Change Username"
+                left={props => (
+                  <List.Icon
+                    {...props}
+                    icon={() => <Fontisto name="at" size={18} />}
+                  />
+                )}
+                right={props => <List.Icon {...props} icon="chevron-right" />}
+              />
+              <Divider style={{marginHorizontal: 20}} />
+              <List.Item
+                title="Change Password"
+                left={props => (
+                  <List.Icon
+                    {...props}
+                    icon={() => <Fontisto name="locked" size={18} />}
+                  />
+                )}
+                right={props => <List.Icon {...props} icon="chevron-right" />}
+              />
+            </View>
+
+            <View style={styles.viewSubContent}>
+              <Subheading style={styles.profileItem}>About</Subheading>
+              <List.Item
+                title="Version: 1.0"
+                left={props => (
+                  <List.Icon
+                    {...props}
+                    icon={() => <FontAwesome name="info-circle" size={20} />}
+                  />
+                )}
+              />
+              <Divider style={{marginHorizontal: 20}} />
+              <List.Item
+                title="Help"
+                left={props => (
+                  <List.Icon
+                    {...props}
+                    icon={() => (
+                      <FontAwesome name="question-circle" size={20} />
+                    )}
+                  />
+                )}
+                right={props => <List.Icon {...props} icon="chevron-right" />}
+              />
+            </View>
+
+            <TouchableOpacity onPress={this.signOut}>
+              <View
+                style={{
+                  flex: 1,
+                  backgroundColor: Colors.white,
+                  marginBottom: 10,
+                  paddingTop: 10,
+                  paddingBottom: 10,
+                }}>
+                <List.Item
+                  title="Logout"
+                  left={props => <List.Icon {...props} icon="logout" />}
+                />
+              </View>
+            </TouchableOpacity>
+          </ScrollView>
+        </SafeAreaView>
+      </>
     );
   }
 }

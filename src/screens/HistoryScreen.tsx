@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {SafeAreaView, StatusBar} from 'react-native';
-import {Appbar} from 'react-native-paper';
+import {Appbar, Colors} from 'react-native-paper';
 import {HistoryItem} from '../components';
 import {ScrollView} from 'react-native-gesture-handler';
 import {NavigationStackProp} from 'react-navigation-stack';
@@ -35,7 +35,7 @@ export default class HistoryScreen extends Component<IProps> {
           backgroundColor={'#996244'}
           translucent={false}
         />
-        <SafeAreaView style={{flex: 1, backgroundColor: '#FBF4EA'}}>
+        <SafeAreaView style={{flex: 1, backgroundColor: Colors.white}}>
           <Appbar.Header>
             <Appbar.BackAction
               onPress={() => {

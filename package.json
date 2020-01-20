@@ -16,9 +16,11 @@
     "react-native": "0.61.5",
     "react-native-gesture-handler": "^1.5.3",
     "react-native-paper": "^3.4.0",
+    "react-native-qrcode-svg": "^6.0.3",
     "react-native-reanimated": "^1.4.0",
     "react-native-safe-area-context": "^0.6.2",
     "react-native-screens": "^2.0.0-alpha.23",
+    "react-native-svg": "^11.0.1",
     "react-native-vector-icons": "^6.6.0",
     "react-navigation": "^4.0.10",
     "react-navigation-stack": "^2.0.15"
@@ -29,6 +31,7 @@
     "@react-native-community/eslint-config": "^0.0.5",
     "@types/react": "^16.9.17",
     "@types/react-native": "^0.61.0",
+    "@types/react-native-google-signin": "^1.0.2",
     "@types/react-native-vector-icons": "^6.4.5",
     "babel-jest": "^24.9.0",
     "eslint": "^6.5.1",
@@ -36,6 +39,7 @@
     "metro-react-native-babel-preset": "^0.56.0",
     "react-native-typescript-transformer": "^1.2.13",
     "react-test-renderer": "16.9.0",
+    "tslint": "^5.20.1",
     "typescript": "^3.7.5"
   },
   "jest": {

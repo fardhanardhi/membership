@@ -7,12 +7,22 @@ import {
   StatusBar,
   ImageBackground,
   TouchableOpacity,
+  StyleSheet,
 } from 'react-native';
-import {Button, Colors, Card, Caption} from 'react-native-paper';
+import {
+  Colors,
+  Card,
+  Caption,
+  FAB,
+  Portal,
+  Modal,
+  Title,
+} from 'react-native-paper';
 import {GoogleSignin} from '@react-native-community/google-signin';
 import {Voucher} from '../components';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {NavigationStackProp} from 'react-navigation-stack';
+import QRCode from 'react-native-qrcode-svg';
 
 interface IProps {
   navigation: NavigationStackProp;
@@ -162,7 +172,7 @@ export default class DashboardScreen extends Component<IProps, IState> {
                 bottom: -10,
                 elevation: 3,
                 flex: 1,
-                backgroundColor: '#FBF4EA',
+                backgroundColor: '#FDF8F2',
               }}>
               <View
                 style={{
@@ -245,20 +255,71 @@ export default class DashboardScreen extends Component<IProps, IState> {
                   return (
                     <Voucher
                       key={index}
-                      bodyColor={Colors.grey100}
+                      bodyColor="#EDE7DD"
                       headColor="#AF8F68"
+                      headTextColor="#FDF8F2"
                       circleColor={Colors.white}
                     />
                   );
                 })}
-                <Button onPress={this.goToProfile}>Profile</Button>
-                <Button onPress={this.goToHistory}>History</Button>
-                <Button onPress={this.signOut}>Logout</Button>
               </View>
             </ScrollView>
           </View>
+          <View style={styles.fab}>
+            <FAB
+              style={{backgroundColor: Colors.brown600}}
+              label="Pay"
+              icon={({size, color}) => (
+                <MaterialCommunityIcons
+                  name="qrcode"
+                  size={size}
+                  color={color}
+                />
+              )}
+              onPress={() => console.log('Pressed')}
+            />
+          </View>
+          <Portal>
+            <Modal visible={true}>
+              <View
+                style={{
+                  backgroundColor: Colors.white,
+                  margin: 40,
+                  padding: 20,
+                  paddingBottom: 15,
+                  borderRadius: 15,
+                }}>
+                <Title style={{fontWeight: 'bold'}}>QR Code</Title>
+                <Text>Show this to purchase prodeuct or redeem points</Text>
+                <View style={{alignItems: 'center', marginTop: 20}}>
+                  <QRCode
+                    value="Cicin i love you"
+                    size={200}
+                    color={Colors.black}
+                  />
+                  <Text
+                    style={{fontSize: 30, fontWeight: 'bold', marginTop: 10}}>
+                    W6Qy9PK1C4
+                  </Text>
+                  <Text style={{marginTop: 20}}>Slide down to close</Text>
+                  <MaterialCommunityIcons name="chevron-down" size={20} />
+                </View>
+              </View>
+            </Modal>
+          </Portal>
         </SafeAreaView>
       </>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  fab: {
+    position: 'absolute',
+    margin: 20,
+    right: 0,
+    left: 0,
+    bottom: 0,
+    alignItems: 'center',
+  },
+});
