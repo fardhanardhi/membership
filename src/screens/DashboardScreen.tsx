@@ -8,6 +8,7 @@ import {
   ImageBackground,
   TouchableOpacity,
   StyleSheet,
+  RefreshControl,
 } from 'react-native';
 import {
   Colors,
@@ -165,7 +166,7 @@ export default class DashboardScreen extends Component<IProps, IState> {
                 bottom: 0,
                 left: 0,
                 right: 0,
-                zIndex: 2,
+                zIndex: 0,
               }}
             />
             <Card
@@ -182,8 +183,8 @@ export default class DashboardScreen extends Component<IProps, IState> {
               }}>
               <View
                 style={{
-                  margin: 10,
-                  height: 55,
+                  // margin: 10,
+                  height: 75,
                   justifyContent: 'center',
                 }}>
                 <View
@@ -192,7 +193,7 @@ export default class DashboardScreen extends Component<IProps, IState> {
                     flex: 1,
                   }}>
                   <TouchableOpacity
-                    style={{flex: 1}}
+                    style={{flex: 1, zIndex: 5}}
                     onPress={this.goToMyVoucher}>
                     <View
                       style={{
@@ -252,7 +253,10 @@ export default class DashboardScreen extends Component<IProps, IState> {
               height: 120,
               backgroundColor: Colors.white,
             }}>
-            <ScrollView>
+            <ScrollView
+              refreshControl={
+                <RefreshControl refreshing={false} onRefresh={() => null} />
+              }>
               <View style={{marginTop: 15}}>
                 <Caption style={{marginVertical: 20, alignSelf: 'center'}}>
                   Available voucher
