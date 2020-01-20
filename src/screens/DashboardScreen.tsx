@@ -257,7 +257,7 @@ export default class DashboardScreen extends Component<IProps, IState> {
               refreshControl={
                 <RefreshControl refreshing={false} onRefresh={() => null} />
               }>
-              <View style={{marginTop: 15}}>
+              <View style={{marginTop: 15, marginBottom: 65}}>
                 <Caption style={{marginVertical: 20, alignSelf: 'center'}}>
                   Available voucher
                 </Caption>
