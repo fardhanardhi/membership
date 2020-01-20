@@ -23,6 +23,7 @@ import {Voucher} from '../components';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {NavigationStackProp} from 'react-navigation-stack';
 import QRCode from 'react-native-qrcode-svg';
+import GestureRecognizer from 'react-native-swipe-gestures';
 
 interface IProps {
   navigation: NavigationStackProp;
@@ -30,6 +31,7 @@ interface IProps {
 
 interface IState {
   availableVouchers: IVoucher[];
+  qrModalVisible: boolean;
 }
 
 interface IVoucher {
@@ -48,6 +50,7 @@ export default class DashboardScreen extends Component<IProps, IState> {
     super(props);
 
     this.state = {
+      qrModalVisible: false,
       availableVouchers: [
         {quantity: 5, type: 1, cost: 0, validityPeriod: '15 Jan 2020'},
         {quantity: 1, type: 3, cost: 1000, validityPeriod: '24 Jan 2020'},
@@ -91,6 +94,9 @@ export default class DashboardScreen extends Component<IProps, IState> {
   goToProfile = () => {
     this.props.navigation.navigate('Profile');
   };
+
+  hideQRModal = () => this.setState({qrModalVisible: false});
+  showQRModal = () => this.setState({qrModalVisible: true});
 
   render() {
     return (
@@ -276,35 +282,50 @@ export default class DashboardScreen extends Component<IProps, IState> {
                   color={color}
                 />
               )}
-              onPress={() => console.log('Pressed')}
+              onPress={this.showQRModal}
             />
           </View>
           <Portal>
-            <Modal visible={true}>
-              <View
-                style={{
-                  backgroundColor: Colors.white,
-                  margin: 40,
-                  padding: 20,
-                  paddingBottom: 15,
-                  borderRadius: 15,
+            <Modal
+              visible={this.state.qrModalVisible}
+              onDismiss={this.hideQRModal}
+              contentContainerStyle={{
+                margin: 20,
+                width: 350,
+                maxWidth: 350,
+                minWidth: 250,
+                alignSelf: 'center',
+              }}>
+              <GestureRecognizer
+                onSwipeDown={this.hideQRModal}
+                config={{
+                  velocityThreshold: 0.3,
+                  directionalOffsetThreshold: 80,
                 }}>
-                <Title style={{fontWeight: 'bold'}}>QR Code</Title>
-                <Text>Show this to purchase prodeuct or redeem points</Text>
-                <View style={{alignItems: 'center', marginTop: 20}}>
-                  <QRCode
-                    value="Cicin i love you"
-                    size={200}
-                    color={Colors.black}
-                  />
-                  <Text
-                    style={{fontSize: 30, fontWeight: 'bold', marginTop: 10}}>
-                    W6Qy9PK1C4
-                  </Text>
-                  <Text style={{marginTop: 20}}>Slide down to close</Text>
-                  <MaterialCommunityIcons name="chevron-down" size={20} />
+                <View
+                  style={{
+                    backgroundColor: Colors.white,
+                    padding: 20,
+                    paddingBottom: 15,
+                    borderRadius: 15,
+                  }}>
+                  <Title style={{fontWeight: 'bold'}}>QR Code</Title>
+                  <Text>Show this to purchase product or redeem points</Text>
+                  <View style={{alignItems: 'center', marginTop: 20}}>
+                    <QRCode
+                      value="W6QY9PK1C4"
+                      size={175}
+                      color={Colors.black}
+                    />
+                    <Text
+                      style={{fontSize: 30, fontWeight: 'bold', marginTop: 10}}>
+                      W6QY9PK1C4
+                    </Text>
+                    <Text style={{marginTop: 20}}>Slide down to close</Text>
+                    <MaterialCommunityIcons name="chevron-down" size={20} />
+                  </View>
                 </View>
-              </View>
+              </GestureRecognizer>
             </Modal>
           </Portal>
         </SafeAreaView>
@@ -316,10 +337,9 @@ export default class DashboardScreen extends Component<IProps, IState> {
 const styles = StyleSheet.create({
   fab: {
     position: 'absolute',
-    margin: 20,
     right: 0,
     left: 0,
-    bottom: 0,
+    bottom: 25,
     alignItems: 'center',
   },
 });
