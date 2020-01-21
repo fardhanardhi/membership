@@ -9,22 +9,16 @@ import {
   TouchableOpacity,
   StyleSheet,
   RefreshControl,
+  Dimensions,
 } from 'react-native';
-import {
-  Colors,
-  Card,
-  Caption,
-  FAB,
-  Portal,
-  Modal,
-  Title,
-} from 'react-native-paper';
+import {Colors, Card, Caption, FAB, Portal, Title} from 'react-native-paper';
 import {GoogleSignin} from '@react-native-community/google-signin';
 import {Voucher} from '../components';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {NavigationStackProp} from 'react-navigation-stack';
 import QRCode from 'react-native-qrcode-svg';
-import GestureRecognizer from 'react-native-swipe-gestures';
+// import GestureRecognizer from 'react-native-swipe-gestures';
+import Modal from 'react-native-modal';
 
 interface IProps {
   navigation: NavigationStackProp;
@@ -100,13 +94,16 @@ export default class DashboardScreen extends Component<IProps, IState> {
   showQRModal = () => this.setState({qrModalVisible: true});
 
   render() {
+    const deviceWidth = Dimensions.get('screen').width;
+    const deviceHeight = Dimensions.get('screen').height;
+
     return (
       <>
         <StatusBar
           barStyle="light-content"
           hidden={false}
-          backgroundColor={'transparent'}
-          translucent={true}
+          backgroundColor={'#2C2B29'}
+          translucent={false}
         />
         <SafeAreaView style={{flex: 1}}>
           <View>
@@ -292,6 +289,41 @@ export default class DashboardScreen extends Component<IProps, IState> {
           </View>
           <Portal>
             <Modal
+              isVisible={this.state.qrModalVisible}
+              backdropColor={'black'}
+              backdropOpacity={0.75}
+              useNativeDriver={true}
+              onSwipeComplete={this.hideQRModal}
+              onBackButtonPress={this.hideQRModal}
+              swipeDirection="down"
+              deviceHeight={deviceHeight}
+              deviceWidth={deviceWidth}>
+              <View
+                style={{
+                  backgroundColor: Colors.white,
+                  borderRadius: 15,
+                  padding: 20,
+                  paddingBottom: 15,
+                  width: 350,
+                  maxWidth: 350,
+                  minWidth: 250,
+                  margin: 20,
+                }}>
+                <Title style={{fontWeight: 'bold'}}>QR Code</Title>
+                <Text>Show this to purchase product or redeem points</Text>
+                <View style={{alignItems: 'center', marginTop: 20}}>
+                  <QRCode value="W6QY9PK1C4" size={175} color={Colors.black} />
+                  <Text
+                    style={{fontSize: 30, fontWeight: 'bold', marginTop: 10}}>
+                    W6QY9PK1C4
+                  </Text>
+                  <Text style={{marginTop: 20}}>Slide down to close</Text>
+                  <MaterialCommunityIcons name="chevron-down" size={20} />
+                </View>
+              </View>
+            </Modal>
+
+            {/* <Modal
               visible={this.state.qrModalVisible}
               onDismiss={this.hideQRModal}
               contentContainerStyle={{
@@ -331,7 +363,7 @@ export default class DashboardScreen extends Component<IProps, IState> {
                   </View>
                 </View>
               </GestureRecognizer>
-            </Modal>
+            </Modal> */}
           </Portal>
         </SafeAreaView>
       </>
