@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {SafeAreaView, ScrollView, StatusBar} from 'react-native';
+import {SafeAreaView, ScrollView, StatusBar, View} from 'react-native';
 import Voucher from '../components/Voucher';
 import {Appbar, Colors} from 'react-native-paper';
 import {NavigationStackProp} from 'react-navigation-stack';
@@ -32,13 +32,44 @@ export default class MyVoucherScreen extends Component<IProps> {
             <Appbar.Content title="My Voucher" />
           </Appbar.Header>
 
-          <ScrollView style={{paddingTop: 20}}>
-            <Voucher
-              bodyColor="#EDE7DD"
-              headColor="#D9B69C"
-              headTextColor="#4D4B47"
-              circleColor={Colors.white}
-            />
+          <ScrollView>
+            <View style={{marginTop: 20}}>
+              <Voucher
+                bodyColor="#EDE7DD"
+                headColor="#D9B69C"
+                headTextColor="#4D4B47"
+                circleColor={Colors.white}
+                style={{marginHorizontal: 20, marginBottom: 20}}
+              />
+              <Voucher
+                bodyColor="#EDE7DD"
+                headColor="#D9B69C"
+                headTextColor="#4D4B47"
+                circleColor={Colors.white}
+                style={{marginHorizontal: 20, marginBottom: 20}}
+              />
+              <Voucher
+                bodyColor="#EDE7DD"
+                headColor="#D9B69C"
+                headTextColor="#4D4B47"
+                circleColor={Colors.white}
+                style={{marginHorizontal: 20, marginBottom: 20}}
+              />
+              <Voucher
+                bodyColor="#EDE7DD"
+                headColor="#D9B69C"
+                headTextColor="#4D4B47"
+                circleColor={Colors.white}
+                style={{marginHorizontal: 20, marginBottom: 20}}
+              />
+              <Voucher
+                bodyColor="#EDE7DD"
+                headColor="#D9B69C"
+                headTextColor="#4D4B47"
+                circleColor={Colors.white}
+                style={{marginHorizontal: 20, marginBottom: 20}}
+              />
+            </View>
           </ScrollView>
         </SafeAreaView>
       </>

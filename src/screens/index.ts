@@ -6,6 +6,7 @@ import WelcomeScreen from './WelcomeScreen';
 import HistoryScreen from './HistoryScreen';
 import ProfileScreen from './ProfileScreen';
 import VoucherScreen from './VoucherScreen';
+import VoucherDetailScreen from './VoucherDetailScreen';
 
 export {
   AuthLoadingScreen,
@@ -16,4 +17,5 @@ export {
   HistoryScreen,
   ProfileScreen,
   VoucherScreen,
+  VoucherDetailScreen,
 };

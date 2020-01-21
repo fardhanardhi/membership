@@ -269,6 +269,7 @@ export default class DashboardScreen extends Component<IProps, IState> {
                       headColor="#AF8F68"
                       headTextColor="#FDF8F2"
                       circleColor={Colors.white}
+                      style={{marginBottom: 20, marginHorizontal: 30}}
                     />
                   );
                 })}

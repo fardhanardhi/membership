@@ -8,6 +8,7 @@ import {
   HistoryScreen,
   ProfileScreen,
   VoucherScreen,
+  VoucherDetailScreen,
 } from '../screens';
 import {createSwitchNavigator} from 'react-navigation';
 
@@ -21,12 +22,14 @@ const AuthStack = createStackNavigator(
     initialRouteName: 'Login',
   },
 );
+
 const AppStack = createStackNavigator(
   {
     Dashboard: DashboardScreen,
     History: HistoryScreen,
     Profile: ProfileScreen,
     Voucher: VoucherScreen,
+    VoucherDetail: VoucherDetailScreen,
   },
   {
     initialRouteName: 'Dashboard',
