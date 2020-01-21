@@ -74,6 +74,7 @@ const Voucher: React.FC<IProps> = props => {
           </View>
         </TouchableOpacity>
         <TouchableNativeFeedback
+          delayPressIn={0}
           background={
             Platform.Version >= 21
               ? TouchableNativeFeedback.Ripple('rgba(0,0,0,.3)', false)
@@ -81,15 +82,21 @@ const Voucher: React.FC<IProps> = props => {
           }
           onPress={() => console.log('pressed')}>
           <View
+            pointerEvents="box-only"
             style={{
               backgroundColor: props.headColor,
               width: 90,
               borderBottomRightRadius: 7,
               borderTopRightRadius: 7,
               justifyContent: 'center',
-              alignItems: 'center',
             }}>
-            <Text style={{color: props.headTextColor, fontWeight: 'bold'}}>
+            <Text
+              style={{
+                color: props.headTextColor,
+                fontWeight: 'bold',
+                textAlign: 'center',
+                textAlignVertical: 'center',
+              }}>
               CLAIM
             </Text>
           </View>
