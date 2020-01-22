@@ -35,6 +35,7 @@ export default class MyVoucherScreen extends Component<IProps> {
           <ScrollView>
             <View style={{marginTop: 20}}>
               <Voucher
+                isClaimed={true}
                 bodyColor="#EDE7DD"
                 headColor="#D9B69C"
                 headTextColor="#4D4B47"
@@ -42,6 +43,7 @@ export default class MyVoucherScreen extends Component<IProps> {
                 style={{marginHorizontal: 20, marginBottom: 20}}
               />
               <Voucher
+                isClaimed={true}
                 bodyColor="#EDE7DD"
                 headColor="#D9B69C"
                 headTextColor="#4D4B47"
@@ -49,6 +51,7 @@ export default class MyVoucherScreen extends Component<IProps> {
                 style={{marginHorizontal: 20, marginBottom: 20}}
               />
               <Voucher
+                isClaimed={true}
                 bodyColor="#EDE7DD"
                 headColor="#D9B69C"
                 headTextColor="#4D4B47"
@@ -56,6 +59,7 @@ export default class MyVoucherScreen extends Component<IProps> {
                 style={{marginHorizontal: 20, marginBottom: 20}}
               />
               <Voucher
+                isClaimed={true}
                 bodyColor="#EDE7DD"
                 headColor="#D9B69C"
                 headTextColor="#4D4B47"
@@ -63,6 +67,7 @@ export default class MyVoucherScreen extends Component<IProps> {
                 style={{marginHorizontal: 20, marginBottom: 20}}
               />
               <Voucher
+                isClaimed={true}
                 bodyColor="#EDE7DD"
                 headColor="#D9B69C"
                 headTextColor="#4D4B47"

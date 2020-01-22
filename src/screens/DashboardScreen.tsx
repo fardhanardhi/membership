@@ -266,6 +266,7 @@ export default class DashboardScreen extends Component<IProps, IState> {
                       headColor="#AF8F68"
                       headTextColor="#FDF8F2"
                       circleColor={Colors.white}
+                      isClaimed={false}
                       style={{marginBottom: 20, marginHorizontal: 30}}
                     />
                   );
@@ -322,48 +323,6 @@ export default class DashboardScreen extends Component<IProps, IState> {
                 </View>
               </View>
             </Modal>
-
-            {/* <Modal
-              visible={this.state.qrModalVisible}
-              onDismiss={this.hideQRModal}
-              contentContainerStyle={{
-                margin: 20,
-                width: 350,
-                maxWidth: 350,
-                minWidth: 250,
-                alignSelf: 'center',
-              }}>
-              <GestureRecognizer
-                onSwipeDown={this.hideQRModal}
-                config={{
-                  velocityThreshold: 0.3,
-                  directionalOffsetThreshold: 80,
-                }}>
-                <View
-                  style={{
-                    backgroundColor: Colors.white,
-                    padding: 20,
-                    paddingBottom: 15,
-                    borderRadius: 15,
-                  }}>
-                  <Title style={{fontWeight: 'bold'}}>QR Code</Title>
-                  <Text>Show this to purchase product or redeem points</Text>
-                  <View style={{alignItems: 'center', marginTop: 20}}>
-                    <QRCode
-                      value="W6QY9PK1C4"
-                      size={175}
-                      color={Colors.black}
-                    />
-                    <Text
-                      style={{fontSize: 30, fontWeight: 'bold', marginTop: 10}}>
-                      W6QY9PK1C4
-                    </Text>
-                    <Text style={{marginTop: 20}}>Slide down to close</Text>
-                    <MaterialCommunityIcons name="chevron-down" size={20} />
-                  </View>
-                </View>
-              </GestureRecognizer>
-            </Modal> */}
           </Portal>
         </SafeAreaView>
       </>

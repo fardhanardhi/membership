@@ -10,7 +10,6 @@ import {
 import {Card, Colors} from 'react-native-paper';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import MaterialIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {withNavigation} from 'react-navigation';
 import {useNavigation} from '../hooks';
 
 interface IProps {
@@ -18,6 +17,7 @@ interface IProps {
   headTextColor: string;
   bodyColor: string;
   circleColor: string;
+  isClaimed?: boolean;
   style?: ViewStyle;
 }
 
@@ -35,7 +35,11 @@ const Voucher: React.FC<IProps> = props => {
       <View style={{flexDirection: 'row', flex: 1}}>
         <TouchableOpacity
           style={{flex: 1}}
-          onPress={() => navigation.navigate('VoucherDetail')}>
+          onPress={() =>
+            navigation.navigate('VoucherDetail', {
+              isClaimed: props.isClaimed,
+            })
+          }>
           <View
             style={{
               margin: 10,
@@ -120,4 +124,4 @@ const Voucher: React.FC<IProps> = props => {
   );
 };
 
-export default withNavigation(Voucher);
+export default Voucher;

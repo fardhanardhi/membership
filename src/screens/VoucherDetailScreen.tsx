@@ -8,19 +8,49 @@ import {
   Platform,
 } from 'react-native';
 import {Appbar, Colors, Title, Text, Divider} from 'react-native-paper';
-import {NavigationStackProp} from 'react-navigation-stack';
 import {Voucher} from '../components';
 import MaterialIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {DefaultTheme} from '../styles';
+import {NavigationScreenProp, NavigationState} from 'react-navigation';
+import QRCode from 'react-native-qrcode-svg';
 
-interface IProps {
-  navigation: NavigationStackProp;
+interface INavigationParams {
+  isClaimed: boolean;
 }
 
-export default class VoucherDetailScreen extends Component<IProps> {
+type Navigation = NavigationScreenProp<NavigationState, INavigationParams>;
+
+interface IProps {
+  navigation: Navigation;
+}
+
+interface IState {
+  isClaimed: boolean;
+}
+
+export default class VoucherDetailScreen extends Component<IProps, IState> {
   static navigationOptions = {
     headerShown: false,
   };
+
+  constructor(props: IProps) {
+    super(props);
+
+    this.state = {
+      isClaimed: false,
+    };
+  }
+
+  componentDidMount() {
+    const {params} = this.props.navigation.state;
+    if (params) {
+      if (params.isClaimed) {
+        this.setState({
+          isClaimed: params.isClaimed,
+        });
+      }
+    }
+  }
 
   render() {
     const termsAndConditions =
@@ -51,20 +81,62 @@ export default class VoucherDetailScreen extends Component<IProps> {
 
           <ScrollView style={{flex: 1}}>
             {/* voucher contaier */}
-            <View
-              style={{
-                backgroundColor: Colors.white,
-                paddingHorizontal: 30,
-                paddingVertical: 30,
-                elevation: 2,
-              }}>
-              <Voucher
-                bodyColor="#EDE7DD"
-                headColor="#D9B69C"
-                headTextColor="#4D4B47"
-                circleColor={Colors.white}
-              />
-            </View>
+            {this.state.isClaimed ? (
+              <>
+                <View
+                  style={{
+                    backgroundColor: Colors.white,
+                    paddingHorizontal: 30,
+                    paddingVertical: 30,
+                    elevation: 2,
+                    alignItems: 'center',
+                  }}>
+                  <QRCode value="W6QY9PK1C4" size={120} color={Colors.black} />
+                  <Text
+                    style={{fontSize: 25, fontWeight: 'bold', marginTop: 10}}>
+                    W6QY9PK1C4
+                  </Text>
+                </View>
+                <Divider />
+                <View
+                  style={{
+                    backgroundColor: Colors.white,
+                    paddingHorizontal: 30,
+                    paddingTop: 5,
+                    paddingBottom: 10,
+                    elevation: 2,
+                    alignItems: 'center',
+                  }}>
+                  <Text style={{fontSize: 25, marginTop: 10}}>
+                    Usage remaining
+                  </Text>
+                  <Text
+                    style={{
+                      fontSize: 50,
+                      marginTop: 10,
+                      fontWeight: 'bold',
+                      lineHeight: 50,
+                    }}>
+                    3
+                  </Text>
+                </View>
+              </>
+            ) : (
+              <View
+                style={{
+                  backgroundColor: Colors.white,
+                  paddingHorizontal: 30,
+                  paddingVertical: 30,
+                  elevation: 2,
+                }}>
+                <Voucher
+                  bodyColor="#EDE7DD"
+                  headColor="#D9B69C"
+                  headTextColor="#4D4B47"
+                  circleColor={Colors.white}
+                />
+              </View>
+            )}
             <View style={{padding: 20}}>
               {/* head */}
               <View style={{marginBottom: 20}}>
@@ -131,47 +203,50 @@ export default class VoucherDetailScreen extends Component<IProps> {
               </View>
             </View>
           </ScrollView>
-          <View
-            style={{
-              height: 75,
-              backgroundColor: Colors.white,
-              alignItems: 'center',
-              justifyContent: 'center',
-              elevation: 20,
-            }}>
-            <View style={{flex: 1, flexDirection: 'row'}}>
-              <TouchableNativeFeedback
-                delayPressIn={0}
-                onPress={() => null}
-                background={
-                  Platform.Version >= 21
-                    ? TouchableNativeFeedback.Ripple(
-                        'rgba(255,255,255,.5)',
-                        false,
-                      )
-                    : TouchableNativeFeedback.SelectableBackground()
-                }>
-                <View
-                  style={{
-                    flex: 1,
-                    backgroundColor: DefaultTheme.colors.primary,
-                    margin: 10,
-                    borderRadius: 10,
-                    justifyContent: 'center',
-                  }}>
-                  <Text
+
+          {this.state.isClaimed ? null : (
+            <View
+              style={{
+                height: 75,
+                backgroundColor: Colors.white,
+                alignItems: 'center',
+                justifyContent: 'center',
+                elevation: 20,
+              }}>
+              <View style={{flex: 1, flexDirection: 'row'}}>
+                <TouchableNativeFeedback
+                  delayPressIn={0}
+                  onPress={() => null}
+                  background={
+                    Platform.Version >= 21
+                      ? TouchableNativeFeedback.Ripple(
+                          'rgba(255,255,255,.5)',
+                          false,
+                        )
+                      : TouchableNativeFeedback.SelectableBackground()
+                  }>
+                  <View
                     style={{
-                      fontSize: 25,
-                      color: Colors.white,
-                      textAlign: 'center',
-                      textAlignVertical: 'center',
+                      flex: 1,
+                      backgroundColor: DefaultTheme.colors.primary,
+                      margin: 10,
+                      borderRadius: 10,
+                      justifyContent: 'center',
                     }}>
-                    Claim
-                  </Text>
-                </View>
-              </TouchableNativeFeedback>
+                    <Text
+                      style={{
+                        fontSize: 25,
+                        color: Colors.white,
+                        textAlign: 'center',
+                        textAlignVertical: 'center',
+                      }}>
+                      Claim
+                    </Text>
+                  </View>
+                </TouchableNativeFeedback>
+              </View>
             </View>
-          </View>
+          )}
         </SafeAreaView>
       </>
     );
