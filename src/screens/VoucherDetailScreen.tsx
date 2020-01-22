@@ -7,7 +7,15 @@ import {
   TouchableNativeFeedback,
   Platform,
 } from 'react-native';
-import {Appbar, Colors, Title, Text, Divider, Portal} from 'react-native-paper';
+import {
+  Appbar,
+  Colors,
+  Title,
+  Text,
+  Divider,
+  Portal,
+  Button,
+} from 'react-native-paper';
 import {Voucher, QRModal} from '../components';
 import MaterialIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {DefaultTheme} from '../styles';
@@ -86,7 +94,7 @@ export default class VoucherDetailScreen extends Component<IProps, IState> {
           </Appbar.Header>
 
           <ScrollView style={{flex: 1}}>
-            {/* voucher contaier */}
+            {/* voucher header contaier / qr container */}
             {this.state.isClaimed ? (
               <>
                 <TouchableOpacity onPress={this.showQRModal}>
@@ -214,8 +222,15 @@ export default class VoucherDetailScreen extends Component<IProps, IState> {
                 })}
               </View>
             </View>
+            {/* delete button (claimed) */}
+            {this.state.isClaimed ? (
+              <Button onPress={() => null} mode="outlined" style={{margin: 20}}>
+                Delete Voucher
+              </Button>
+            ) : null}
           </ScrollView>
 
+          {/* fixed claim button (not claimed) */}
           {this.state.isClaimed ? null : (
             <View
               style={{
