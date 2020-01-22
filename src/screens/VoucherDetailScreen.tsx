@@ -7,12 +7,13 @@ import {
   TouchableNativeFeedback,
   Platform,
 } from 'react-native';
-import {Appbar, Colors, Title, Text, Divider} from 'react-native-paper';
-import {Voucher} from '../components';
+import {Appbar, Colors, Title, Text, Divider, Portal} from 'react-native-paper';
+import {Voucher, QRModal} from '../components';
 import MaterialIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {DefaultTheme} from '../styles';
 import {NavigationScreenProp, NavigationState} from 'react-navigation';
 import QRCode from 'react-native-qrcode-svg';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
 interface INavigationParams {
   isClaimed: boolean;
@@ -26,6 +27,7 @@ interface IProps {
 
 interface IState {
   isClaimed: boolean;
+  qrModalVisible: boolean;
 }
 
 export default class VoucherDetailScreen extends Component<IProps, IState> {
@@ -38,6 +40,7 @@ export default class VoucherDetailScreen extends Component<IProps, IState> {
 
     this.state = {
       isClaimed: false,
+      qrModalVisible: false,
     };
   }
 
@@ -51,6 +54,9 @@ export default class VoucherDetailScreen extends Component<IProps, IState> {
       }
     }
   }
+
+  hideQRModal = () => this.setState({qrModalVisible: false});
+  showQRModal = () => this.setState({qrModalVisible: true});
 
   render() {
     const termsAndConditions =
@@ -83,20 +89,26 @@ export default class VoucherDetailScreen extends Component<IProps, IState> {
             {/* voucher contaier */}
             {this.state.isClaimed ? (
               <>
-                <View
-                  style={{
-                    backgroundColor: Colors.white,
-                    paddingHorizontal: 30,
-                    paddingVertical: 30,
-                    elevation: 2,
-                    alignItems: 'center',
-                  }}>
-                  <QRCode value="W6QY9PK1C4" size={120} color={Colors.black} />
-                  <Text
-                    style={{fontSize: 25, fontWeight: 'bold', marginTop: 10}}>
-                    W6QY9PK1C4
-                  </Text>
-                </View>
+                <TouchableOpacity onPress={this.showQRModal}>
+                  <View
+                    style={{
+                      backgroundColor: Colors.white,
+                      paddingHorizontal: 30,
+                      paddingVertical: 30,
+                      elevation: 2,
+                      alignItems: 'center',
+                    }}>
+                    <QRCode
+                      value="W6QY9PK1C4"
+                      size={120}
+                      color={Colors.black}
+                    />
+                    <Text
+                      style={{fontSize: 25, fontWeight: 'bold', marginTop: 10}}>
+                      W6QY9PK1C4
+                    </Text>
+                  </View>
+                </TouchableOpacity>
                 <Divider />
                 <View
                   style={{
@@ -247,6 +259,15 @@ export default class VoucherDetailScreen extends Component<IProps, IState> {
               </View>
             </View>
           )}
+
+          <Portal>
+            <QRModal
+              isVisible={this.state.qrModalVisible}
+              onHide={this.hideQRModal}
+              subtitle="Show this to redeem voucher"
+              value="W6QY9PK1C4"
+            />
+          </Portal>
         </SafeAreaView>
       </>
     );
