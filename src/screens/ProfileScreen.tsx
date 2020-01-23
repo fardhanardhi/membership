@@ -47,6 +47,8 @@ export default class ProfileScreen extends Component<IProps> {
     }
   };
 
+  gotoEditProfileScreen = () => this.props.navigation.navigate('EditProfile');
+
   render() {
     return (
       <>
@@ -140,6 +142,7 @@ export default class ProfileScreen extends Component<IProps> {
                   />
                 )}
                 right={props => <List.Icon {...props} icon="chevron-right" />}
+                onPress={this.gotoEditProfileScreen}
               />
             </View>
 

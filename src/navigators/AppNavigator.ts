@@ -9,6 +9,7 @@ import {
   ProfileScreen,
   VoucherScreen,
   VoucherDetailScreen,
+  EditProfileScreen,
 } from '../screens';
 import {createSwitchNavigator} from 'react-navigation';
 
@@ -30,6 +31,7 @@ const AppStack = createStackNavigator(
     Profile: ProfileScreen,
     Voucher: VoucherScreen,
     VoucherDetail: VoucherDetailScreen,
+    EditProfile: EditProfileScreen,
   },
   {
     initialRouteName: 'Dashboard',
