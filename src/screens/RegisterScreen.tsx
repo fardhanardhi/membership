@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, SafeAreaView, Image} from 'react-native';
+import {View, SafeAreaView, Image, StyleSheet} from 'react-native';
 import {
   TextInput,
   Colors,
@@ -217,7 +217,7 @@ export default class RegisterScreen extends Component<IProps, IState> {
   }
 }
 
-const styles = {
+const styles = StyleSheet.create({
   textInput: {
     marginBottom: 5,
     backgroundColor: Colors.white,
@@ -226,4 +226,4 @@ const styles = {
   button: {
     margin: 5,
   },
-};
+});
