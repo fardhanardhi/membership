@@ -8,6 +8,7 @@ import ProfileScreen from './ProfileScreen';
 import VoucherScreen from './VoucherScreen';
 import VoucherDetailScreen from './VoucherDetailScreen';
 import EditProfileScreen from './EditProfileScreen';
+import ChangeUsernameScreen from './ChangeUsernameScreen';
 
 export {
   AuthLoadingScreen,
@@ -20,4 +21,5 @@ export {
   VoucherScreen,
   VoucherDetailScreen,
   EditProfileScreen,
+  ChangeUsernameScreen,
 };
