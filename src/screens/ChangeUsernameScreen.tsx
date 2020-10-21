@@ -35,7 +35,7 @@ interface IProps {
         isUsernameValid: true,
         isPasswordValid: true,
         isSnackbarVisible: false,
-      }
+      };
     }
 
 onUsernameChange = text => {
